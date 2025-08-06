@@ -15,7 +15,7 @@ import react from '@vitejs/plugin-react'
 // Update this block 👇
 export default defineConfig({
   plugins: [react()],
-  base: '/Shraddha-Chauhan-Portfolio/', // <-- Update this to match your new GitHub repo name
+  base: '/', // <-- Root path for custom domain
   server: {
     port: 3000,
     open: true
