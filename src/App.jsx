@@ -930,7 +930,7 @@ function App() {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.1 }}
           >
-            My professional journey in Data Science and Analytics
+            My Professional Journey in Data Science and Analytics
           </motion.p>
           
           <div className="experience-timeline">
@@ -1000,7 +1000,7 @@ function App() {
           >
             <h2 className="section-title">Projects</h2>
             <p className="section-subtitle">
-              A showcase of my data science and analytics projects
+              A Showcase of my Data Science and Analytics Projects
             </p>
           </motion.div>
 
@@ -1062,7 +1062,7 @@ function App() {
           >
             <h2 className="section-title">Skills</h2>
             <p className="section-subtitle">
-              My technical expertise and competencies
+              My Technical Expertise and Competencies
             </p>
           </motion.div>
 
@@ -1286,7 +1286,7 @@ function App() {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.1 }}
           >
-            Recognition for innovation, leadership, and impactful contributions
+            Recognition for Innovation, Leadership, and Impactful Contributions
           </motion.p>
           
           <div className="grid grid-3">
@@ -1370,7 +1370,7 @@ function App() {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.1 }}
           >
-            Professional certifications and specialized training programs
+            Professional Certifications and Specialized Training Programs
           </motion.p>
           
           <div className="grid grid-3">

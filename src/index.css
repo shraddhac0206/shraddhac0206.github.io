@@ -3591,9 +3591,9 @@ nav:hover::before {
   bottom: 100%;
   left: 50%;
   transform: translateX(-50%);
-  background: var(--text-primary);
+  background: #1f2937;
   color: white;
-  padding: 0.5rem;
+  padding: 0.75rem 1rem;
   border-radius: var(--radius-sm);
   font-size: 0.75rem;
   white-space: nowrap;
@@ -3601,9 +3601,27 @@ nav:hover::before {
   pointer-events: none;
   transition: opacity 0.3s ease;
   z-index: 1000;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  max-width: 250px;
+  text-align: center;
+  line-height: 1.4;
 }
 
-.tooltip:hover::after {
+.tooltip::before {
+  content: "";
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 5px solid transparent;
+  border-top-color: #1f2937;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 1000;
+}
+
+.tooltip:hover::after,
+.tooltip:hover::before {
   opacity: 1;
 }
 
@@ -3780,7 +3798,7 @@ nav:hover::before {
   bottom: 100%;
   left: 50%;
   transform: translateX(-50%);
-  background: var(--text-primary);
+  background: #1f2937;
   color: white;
   padding: 0.75rem 1rem;
   border-radius: var(--radius-sm);
@@ -3790,7 +3808,7 @@ nav:hover::before {
   pointer-events: none;
   transition: all 0.3s ease;
   z-index: 1000;
-  box-shadow: var(--shadow-lg);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
   max-width: 250px;
   white-space: normal;
   text-align: center;
@@ -3804,7 +3822,7 @@ nav:hover::before {
   left: 50%;
   transform: translateX(-50%);
   border: 5px solid transparent;
-  border-top-color: var(--text-primary);
+  border-top-color: #1f2937;
   opacity: 0;
   transition: opacity 0.3s ease;
   z-index: 1000;
