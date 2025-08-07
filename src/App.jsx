@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Mail, Phone, Linkedin, Github, Code, ExternalLink, Database, Brain, BarChart3, Globe, Cloud, FileText } from 'lucide-react';
+import { Mail, Phone, Linkedin, Github, Code, ExternalLink, Database, Brain, BarChart3, Globe, Cloud, FileText, TrendingUp, PieChart, Activity, Zap, Target, Users, Award, Star, CheckCircle, ArrowUpRight, BarChart, LineChart, ScatterChart } from 'lucide-react';
 import './index.css';
 import Shraddha_Cha_Resume from './Shraddha_Cha_Resume.pdf'
 
 function App() {
   const [activeSection, setActiveSection] = useState('home');
   const [activeFilter, setActiveFilter] = useState('all');
+  const [showMetrics, setShowMetrics] = useState(false);
 
   const scrollToSection = (sectionId) => {
     const element = document.getElementById(sectionId);
@@ -36,7 +37,7 @@ function App() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Tech stack icons mapping
+  // Enhanced tech stack icons mapping with more analytics-focused icons
   const techIcons = {
     'Python': <Code className="w-4 h-4" />,
     'SQL': <Database className="w-4 h-4" />,
@@ -48,7 +49,7 @@ function App() {
     'Streamlit': <Globe className="w-4 h-4" />,
     'OpenAI GPT API': <Brain className="w-4 h-4" />,
     'LSTM': <Brain className="w-4 h-4" />,
-    'ARIMA': <Brain className="w-4 h-4" />,
+    'ARIMA': <TrendingUp className="w-4 h-4" />,
     'Random Forest': <Brain className="w-4 h-4" />,
     'Extra Trees': <Brain className="w-4 h-4" />,
     'Scikit-learn': <Brain className="w-4 h-4" />,
@@ -60,7 +61,7 @@ function App() {
     'Mapbox': <Globe className="w-4 h-4" />,
     'DAX': <Database className="w-4 h-4" />,
     'Power Query': <Database className="w-4 h-4" />,
-    'HR Analytics': <BarChart3 className="w-4 h-4" />,
+    'HR Analytics': <Users className="w-4 h-4" />,
     'SAP S/4HANA': <Database className="w-4 h-4" />,
     'BRF+': <Code className="w-4 h-4" />,
     'Fiori': <Globe className="w-4 h-4" />,
@@ -70,6 +71,198 @@ function App() {
     'Scipy': <Brain className="w-4 h-4" />,
     'Statsmodels': <Brain className="w-4 h-4" />
   };
+
+
+
+  // Enhanced Data Analytics Background Component
+  const DataAnalyticsBackground = () => (
+    <div className="hero-data-elements">
+      <div className="data-element">📊</div>
+      <div className="data-element">📈</div>
+      <div className="data-element">🔍</div>
+      <div className="data-element">💡</div>
+      <div className="data-element">📋</div>
+      <div className="data-element">🎯</div>
+      
+      <div className="data-flow-line"></div>
+      <div className="data-flow-line"></div>
+      <div className="data-flow-line"></div>
+    </div>
+  );
+
+  // Interactive Chart Component
+  const InteractiveChart = ({ data, type = "bar" }) => (
+    <motion.div
+      className="interactive-chart"
+      initial={{ opacity: 0, scale: 0.8 }}
+      animate={{ opacity: 1, scale: 1 }}
+      transition={{ duration: 0.8 }}
+    >
+      {type === "bar" && (
+        <div className="chart-container">
+          {data.map((item, index) => (
+            <motion.div
+              key={index}
+              className="chart-bar"
+              style={{ height: `${item.value}%` }}
+              initial={{ height: 0 }}
+              animate={{ height: `${item.value}%` }}
+              transition={{ delay: index * 0.1, duration: 0.8 }}
+            >
+              <span className="chart-label">{item.label}</span>
+            </motion.div>
+          ))}
+        </div>
+      )}
+    </motion.div>
+  );
+
+  // Enhanced Skill Progress Component
+  const SkillProgress = ({ skill, percentage, icon }) => (
+    <motion.div
+      className="skill-progress"
+      whileHover={{ scale: 1.05 }}
+      initial={{ opacity: 0, x: -20 }}
+      animate={{ opacity: 1, x: 0 }}
+    >
+      <div className="skill-header">
+        <span className="skill-icon">{icon}</span>
+        <span className="skill-name">{skill}</span>
+        <span className="skill-percentage">{percentage}%</span>
+      </div>
+      <div className="progress-bar">
+        <motion.div
+          className="progress-fill"
+          initial={{ width: 0 }}
+          animate={{ width: `${percentage}%` }}
+          transition={{ duration: 1, delay: 0.2 }}
+        />
+      </div>
+    </motion.div>
+  );
+
+  // Data Analytics Tooltip Component
+  const AnalyticsTooltip = ({ children, tooltip }) => (
+    <div className="tooltip" data-tooltip={tooltip}>
+      {children}
+    </div>
+  );
+
+  // Enhanced Project Card with Analytics
+  const EnhancedProjectCard = ({ project, index }) => (
+    <motion.div
+      key={index}
+      initial={{ opacity: 0, y: 30, scale: 0.9 }}
+      whileInView={{ opacity: 1, y: 0, scale: 1 }}
+      transition={{ duration: 0.8, delay: index * 0.1, type: "spring", bounce: 0.3 }}
+      viewport={{ once: true }}
+      className="project-card glow-effect"
+      whileHover={{ 
+        y: -10, 
+        scale: 1.02,
+        transition: { type: "spring", stiffness: 300, damping: 20 }
+      }}
+    >
+      {/* Achievement Badge */}
+      {project.achievement && (
+        <motion.div
+          className="achievement-ribbon"
+          initial={{ x: -100, opacity: 0 }}
+          animate={{ x: 0, opacity: 1 }}
+          transition={{ delay: 0.5 }}
+        >
+          <span className="ribbon-text">🏆 {project.achievement}</span>
+        </motion.div>
+      )}
+
+      <div className="card-content">
+        <div className="project-header">
+          <h3 className="project-title">
+            {project.title}
+          </h3>
+          <motion.div
+            className="project-category-icon"
+            whileHover={{ rotate: 360 }}
+            transition={{ duration: 0.6 }}
+          >
+            {project.category === 'ai' && <Brain className="w-5 h-5" />}
+            {project.category === 'data' && <Database className="w-5 h-5" />}
+            {project.category === 'viz' && <BarChart3 className="w-5 h-5" />}
+            {project.category === 'ml' && <TrendingUp className="w-5 h-5" />}
+          </motion.div>
+        </div>
+        
+        <p className="project-description">
+          {project.description}
+        </p>
+        
+        <div className="tech-stack">
+          <h4 className="tech-stack-title">Technologies Used</h4>
+          <div className="tech-tags">
+            {project.technologies.map((tech, techIndex) => {
+              const getTechCategory = (techName) => {
+                const pythonTools = ['Python', 'Pandas', 'NumPy', 'Scikit-learn', 'Seaborn', 'Scipy', 'Statsmodels', 'Streamlit'];
+                const sqlTools = ['SQL', 'MySQL', 'Window Functions', 'Data Cleaning', 'DAX', 'Power Query'];
+                const mlTools = ['Machine Learning', 'LSTM', 'ARIMA', 'Random Forest', 'Extra Trees', 'ROC Analysis', 'OpenAI GPT API'];
+                const vizTools = ['Tableau', 'Power BI', 'Data Visualization', 'Mapbox', 'HR Analytics'];
+                const cloudTools = ['AWS', 'Cloud'];
+                const otherTools = ['Excel', 'VBA', 'SAP S/4HANA', 'BRF+', 'Fiori', 'Requirements Engineering'];
+                
+                if (pythonTools.includes(techName)) return 'python';
+                if (sqlTools.includes(techName)) return 'sql';
+                if (mlTools.includes(techName)) return 'ml';
+                if (vizTools.includes(techName)) return 'viz';
+                if (cloudTools.includes(techName)) return 'cloud';
+                if (otherTools.includes(techName)) return 'other';
+                return 'other';
+              };
+              
+              const category = getTechCategory(tech);
+              
+              return (
+                <motion.span
+                  key={techIndex}
+                  className={`tech-tag ${category}`}
+                  whileHover={{ scale: 1.1, rotate: 5 }}
+                  transition={{ type: "spring", stiffness: 400 }}
+                >
+                  {techIcons[tech] || <Code className="w-3 h-3" />}
+                  {tech}
+                </motion.span>
+              );
+            })}
+          </div>
+        </div>
+        
+        <div className="project-actions">
+          <motion.a
+            href={project.github}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="project-btn project-btn-secondary"
+            whileHover={{ scale: 1.05, y: -2 }}
+            whileTap={{ scale: 0.95 }}
+          >
+            <Github className="w-4 h-4" />
+            View Code
+          </motion.a>
+          {project.live && (
+            <motion.a
+              href={project.live}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="project-btn project-btn-primary"
+              whileHover={{ scale: 1.05, y: -2 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <ExternalLink className="w-4 h-4" />
+              Live Demo
+            </motion.a>
+          )}
+        </div>
+      </div>
+    </motion.div>
+  );
 
   const projects = [
     {
@@ -354,8 +547,54 @@ function App() {
 
   return (
     <div className="App">
+      {/* Animated Particles Background */}
+      <div className="particles-container">
+        {[...Array(10)].map((_, i) => (
+          <div key={i} className="particle" style={{
+            animationDelay: `${i * 2}s`,
+            left: `${10 + i * 8}%`
+          }}></div>
+        ))}
+      </div>
+      
       {/* Navigation */}
       <nav className="fixed top-0 w-full z-50">
+        {/* Data Analytics Background Elements */}
+        <div className="nav-analytics-bg">
+          {/* Floating Charts */}
+          <div className="floating-chart chart-1">
+            <div className="chart-bar" style={{height: '60%'}}></div>
+            <div className="chart-bar" style={{height: '80%'}}></div>
+            <div className="chart-bar" style={{height: '40%'}}></div>
+            <div className="chart-bar" style={{height: '90%'}}></div>
+          </div>
+          <div className="floating-chart chart-2">
+            <div className="chart-line"></div>
+            <div className="chart-dot"></div>
+            <div className="chart-dot"></div>
+            <div className="chart-dot"></div>
+          </div>
+          <div className="floating-chart chart-3">
+            <div className="pie-chart">
+              <div className="pie-segment" style={{transform: 'rotate(0deg)'}}></div>
+              <div className="pie-segment" style={{transform: 'rotate(120deg)'}}></div>
+              <div className="pie-segment" style={{transform: 'rotate(240deg)'}}></div>
+            </div>
+          </div>
+          
+          {/* Data Points */}
+          <div className="data-point dp-1">📊</div>
+          <div className="data-point dp-2">📈</div>
+          <div className="data-point dp-3">🔍</div>
+          <div className="data-point dp-4">💡</div>
+          <div className="data-point dp-5">📋</div>
+          
+          {/* Grid Lines */}
+          <div className="grid-line gl-1"></div>
+          <div className="grid-line gl-2"></div>
+          <div className="grid-line gl-3"></div>
+        </div>
+        
         <div className="nav-container">
           <div className="flex items-center justify-between h-16">
             <motion.div
@@ -392,17 +631,20 @@ function App() {
         {/* Background Pattern */}
         <div className="hero-background"></div>
         
+        {/* Data Analytics Background Elements */}
+        <DataAnalyticsBackground />
+        
         <div className="container relative z-10">
           <div className="hero-content">
             {/* Main Content */}
             <div className="hero-main text-center">
               <motion.h1
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-                className="hero-title"
-          >
-              Hi, I'm Shraddha Chauhan
+                initial={{ opacity: 0, y: 30, scale: 0.8 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                transition={{ duration: 1, type: "spring", bounce: 0.4 }}
+                className="hero-title glow-effect"
+              >
+                Hi, I'm Shraddha Chauhan
               </motion.h1>
               
               <motion.h2
@@ -429,19 +671,38 @@ function App() {
                 transition={{ duration: 0.8, delay: 0.6 }}
                 className="hero-buttons"
               >
-                <button onClick={() => scrollToSection('projects')} className="btn btn-primary">
+                <motion.button 
+                  onClick={() => scrollToSection('projects')} 
+                  className="btn btn-primary glow-effect"
+                  whileHover={{ scale: 1.05, y: -5 }}
+                  whileTap={{ scale: 0.95 }}
+                  transition={{ type: "spring", stiffness: 400, damping: 10 }}
+                >
                   View My Work
-                </button>
-                <button onClick={() => scrollToSection('contact')} className="btn btn-secondary">
-                Get In Touch
-                </button>
-                {/* <button className="btn btn-outline"> */}
-                  <a href={Shraddha_Cha_Resume} download="Shraddha_Cha_Resume.pdf" className="btn btn-outline">
-                    Download CV
-                  </a>
-                {/* </button> */}
+                </motion.button>
+                <motion.button 
+                  onClick={() => scrollToSection('contact')} 
+                  className="btn btn-secondary glow-effect"
+                  whileHover={{ scale: 1.05, y: -5 }}
+                  whileTap={{ scale: 0.95 }}
+                  transition={{ type: "spring", stiffness: 400, damping: 10 }}
+                >
+                  Get In Touch
+                </motion.button>
+                <motion.a 
+                  href={Shraddha_Cha_Resume} 
+                  download="Shraddha_Cha_Resume.pdf" 
+                  className="btn btn-outline glow-effect"
+                  whileHover={{ scale: 1.05, y: -5 }}
+                  whileTap={{ scale: 0.95 }}
+                  transition={{ type: "spring", stiffness: 400, damping: 10 }}
+                >
+                  Download CV
+                </motion.a>
               </motion.div>
             </div>
+            
+
             
             {/* Quick Links */}
             <motion.div
@@ -450,31 +711,37 @@ function App() {
               transition={{ duration: 0.8, delay: 0.8 }}
               className="hero-quick-links"
             >
-              <a
+              <motion.a
                 href="https://www.linkedin.com/in/shraddha-chauhan-235a61233/"
                 rel="noopener noreferrer"
                 className="quick-link"
                 title="LinkedIn"
+                whileHover={{ scale: 1.2, rotate: 5 }}
+                whileTap={{ scale: 0.9 }}
               >
                 <Linkedin className="w-6 h-6" />
-              </a>
-              <a
+              </motion.a>
+              <motion.a
                 href="https://github.com/shraddhac0206"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="quick-link"
                 title="GitHub"
+                whileHover={{ scale: 1.2, rotate: 5 }}
+                whileTap={{ scale: 0.9 }}
               >
                 <Github className="w-6 h-6" />
-              </a>
-              <a
+              </motion.a>
+              <motion.a
                 href="mailto:shraddhachauhan261999@gmail.com"
                 className="quick-link"
                 title="Email"
+                whileHover={{ scale: 1.2, rotate: 5 }}
+                whileTap={{ scale: 0.9 }}
               >
                 <Mail className="w-6 h-6" />
-              </a>
-          </motion.div>
+              </motion.a>
+            </motion.div>
           </div>
         </div>
       </section>
@@ -759,90 +1026,7 @@ function App() {
           {/* Projects Grid */}
           <div className="grid grid-3 gap-8">
             {filteredProjects.map((project, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: index * 0.1 }}
-                viewport={{ once: true }}
-                className="project-card"
-              >
-                {/* Achievement Badge */}
-                {project.achievement && (
-                  <div className="achievement-ribbon">
-                    <span className="ribbon-text">🏆 {project.achievement}</span>
-                  </div>
-                )}
-
-                <div className="card-content">
-                  <div className="project-header">
-                    <h3 className="project-title">
-                      {project.title}
-                    </h3>
-                  </div>
-                  
-                  <p className="project-description">
-                    {project.description}
-                  </p>
-                  
-                  <div className="tech-stack">
-                    <h4 className="tech-stack-title">Technologies Used</h4>
-                    <div className="tech-tags">
-                      {project.technologies.map((tech, techIndex) => {
-                        // Categorize technologies for color coding
-                        const getTechCategory = (techName) => {
-                          const pythonTools = ['Python', 'Pandas', 'NumPy', 'Scikit-learn', 'Seaborn', 'Scipy', 'Statsmodels', 'Streamlit'];
-                          const sqlTools = ['SQL', 'MySQL', 'Window Functions', 'Data Cleaning', 'DAX', 'Power Query'];
-                          const mlTools = ['Machine Learning', 'LSTM', 'ARIMA', 'Random Forest', 'Extra Trees', 'ROC Analysis', 'OpenAI GPT API'];
-                          const vizTools = ['Tableau', 'Power BI', 'Data Visualization', 'Mapbox', 'HR Analytics'];
-                          const cloudTools = ['AWS', 'Cloud'];
-                          const otherTools = ['Excel', 'VBA', 'SAP S/4HANA', 'BRF+', 'Fiori', 'Requirements Engineering'];
-                          
-                          if (pythonTools.includes(techName)) return 'python';
-                          if (sqlTools.includes(techName)) return 'sql';
-                          if (mlTools.includes(techName)) return 'ml';
-                          if (vizTools.includes(techName)) return 'viz';
-                          if (cloudTools.includes(techName)) return 'cloud';
-                          if (otherTools.includes(techName)) return 'other';
-                          return 'other';
-                        };
-                        
-                        const category = getTechCategory(tech);
-                        
-                        return (
-                          <span key={techIndex} className={`tech-tag ${category}`}>
-                            {techIcons[tech] || <Code className="w-3 h-3" />}
-                            {tech}
-                          </span>
-                        );
-                      })}
-                    </div>
-                  </div>
-                  
-                  <div className="project-actions">
-                    <a
-                      href={project.github}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="project-btn project-btn-secondary"
-                    >
-                      <Github className="w-4 h-4" />
-                      View Code
-                    </a>
-                    {project.live && (
-                      <a
-                        href={project.live}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="project-btn project-btn-primary"
-                      >
-                        <ExternalLink className="w-4 h-4" />
-                        Live Demo
-                      </a>
-                    )}
-                  </div>
-                </div>
-              </motion.div>
+              <EnhancedProjectCard project={project} index={index} />
             ))}
           </div>
 
@@ -882,21 +1066,67 @@ function App() {
             </p>
           </motion.div>
 
+          {/* Interactive Skills Progress */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            viewport={{ once: true }}
+            className="mb-12"
+          >
+            <h3 className="text-2xl font-bold text-center mb-8">Core Competencies</h3>
+            <div className="grid grid-2 gap-6">
+              <SkillProgress 
+                skill="Data Analysis" 
+                percentage={95} 
+                icon={<BarChart3 className="w-5 h-5" />} 
+              />
+              <SkillProgress 
+                skill="Machine Learning" 
+                percentage={90} 
+                icon={<Brain className="w-5 h-5" />} 
+              />
+              <SkillProgress 
+                skill="Data Visualization" 
+                percentage={92} 
+                icon={<PieChart className="w-5 h-5" />} 
+              />
+              <SkillProgress 
+                skill="SQL & Databases" 
+                percentage={88} 
+                icon={<Database className="w-5 h-5" />} 
+              />
+              <SkillProgress 
+                skill="Python Programming" 
+                percentage={94} 
+                icon={<Code className="w-5 h-5" />} 
+              />
+              <SkillProgress 
+                skill="Business Intelligence" 
+                percentage={87} 
+                icon={<TrendingUp className="w-5 h-5" />} 
+              />
+            </div>
+          </motion.div>
+
           <div className="space-y-12">
             {skillGroups.map((skillGroup, index) => (
               <motion.div
                 key={skillGroup.category}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                className={`skill-category-card ${skillGroup.category === "Languages & Programming" ? "featured" : ""} ${skillGroup.category === "Machine Learning" ? "ml-featured" : ""}`}
+                initial={{ opacity: 0, y: 20, scale: 0.95 }}
+                whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                transition={{ duration: 0.6, delay: index * 0.1, type: "spring", bounce: 0.3 }}
+                className={`skill-category-card glow-effect ${skillGroup.category === "Languages & Programming" ? "featured" : ""} ${skillGroup.category === "Machine Learning" ? "ml-featured" : ""}`}
+                whileHover={{ 
+                  y: -5, 
+                  scale: 1.02,
+                  transition: { type: "spring", stiffness: 300, damping: 20 }
+                }}
               >
                 <div className="skill-category-header">
                   <div className="skill-category-icon">
                     {skillGroup.category === "Languages & Programming" && (
-                      <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
-                      </svg>
+                      <Code className="w-6 h-6" />
                     )}
                     {skillGroup.category === "Tech/OS" && (
                       <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -909,14 +1139,10 @@ function App() {
                       </svg>
                     )}
                     {skillGroup.category === "Machine Learning" && (
-                      <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
-                      </svg>
+                      <Brain className="w-6 h-6" />
                     )}
                     {skillGroup.category === "Technical Competencies" && (
-                      <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                      </svg>
+                      <CheckCircle className="w-6 h-6" />
                     )}
                   </div>
                   <h3 className="skill-category-title">{skillGroup.category}</h3>
@@ -927,20 +1153,24 @@ function App() {
                     {/* Modeling & Analysis */}
                     <div className="skill-subgroup">
                       <h4 className="skill-subgroup-title">
+                        <TrendingUp className="w-4 h-4" />
                         Modeling & Analysis
                       </h4>
                       <div className="skill-tags-row">
                         {skillGroup.skills.filter(skill => 
                           ['Predictive Modeling', 'Regression Analysis', 'A/B Testing', 'Statistical Testing', 'Data Mining'].includes(skill)
                         ).map((skill, skillIndex) => (
-                          <motion.span
+                          <AnalyticsTooltip
                             key={skillIndex}
-                            whileHover={{ scale: 1.05, y: -2 }}
-                            className="skill-tag competency-tag modeling"
-                            title={`${skill} → Used in advanced analytics and statistical modeling projects`}
+                            tooltip={`${skill} → Used in advanced analytics and statistical modeling projects`}
                           >
-                            {skill}
-                          </motion.span>
+                            <motion.span
+                              whileHover={{ scale: 1.05, y: -2 }}
+                              className="skill-tag competency-tag modeling"
+                            >
+                              {skill}
+                            </motion.span>
+                          </AnalyticsTooltip>
                         ))}
                       </div>
                     </div>
@@ -948,20 +1178,24 @@ function App() {
                     {/* Data Operations */}
                     <div className="skill-subgroup">
                       <h4 className="skill-subgroup-title">
+                        <Database className="w-4 h-4" />
                         Data Operations
                       </h4>
                       <div className="skill-tags-row">
                         {skillGroup.skills.filter(skill => 
                           ['Data Wrangling', 'Data Cleaning', 'ETL Automation', 'Data Risk Management', 'CRM Analytics'].includes(skill)
                         ).map((skill, skillIndex) => (
-                          <motion.span
+                          <AnalyticsTooltip
                             key={skillIndex}
-                            whileHover={{ scale: 1.05, y: -2 }}
-                            className="skill-tag competency-tag data"
-                            title={`${skill} → Applied in data pipeline development and quality assurance`}
+                            tooltip={`${skill} → Applied in data pipeline development and quality assurance`}
                           >
-                            {skill}
-                          </motion.span>
+                            <motion.span
+                              whileHover={{ scale: 1.05, y: -2 }}
+                              className="skill-tag competency-tag data"
+                            >
+                              {skill}
+                            </motion.span>
+                          </AnalyticsTooltip>
                         ))}
                       </div>
                     </div>
@@ -969,20 +1203,24 @@ function App() {
                     {/* Consulting & Communication */}
                     <div className="skill-subgroup">
                       <h4 className="skill-subgroup-title">
+                        <Users className="w-4 h-4" />
                         Consulting & Communication
                       </h4>
                       <div className="skill-tags-row">
                         {skillGroup.skills.filter(skill => 
                           ['Client Collaboration', 'Technical Consultancy', 'Documentation', 'Process Assessment', 'Business Requirements Gathering'].includes(skill)
                         ).map((skill, skillIndex) => (
-                          <motion.span
+                          <AnalyticsTooltip
                             key={skillIndex}
-                            whileHover={{ scale: 1.05, y: -2 }}
-                            className="skill-tag competency-tag soft"
-                            title={`${skill} → Essential for stakeholder communication and project success`}
+                            tooltip={`${skill} → Essential for stakeholder communication and project success`}
                           >
-                            {skill}
-                          </motion.span>
+                            <motion.span
+                              whileHover={{ scale: 1.05, y: -2 }}
+                              className="skill-tag competency-tag soft"
+                            >
+                              {skill}
+                            </motion.span>
+                          </AnalyticsTooltip>
                         ))}
                       </div>
                     </div>
@@ -993,14 +1231,14 @@ function App() {
                       // Get icon for specific skills
                       const getSkillIcon = (skillName) => {
                         const iconMap = {
-                          'Python': <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" /></svg>,
-                          'SQL': <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4" /></svg>,
-                          'AWS': <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z" /></svg>,
-                          'Power BI': <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" /></svg>,
-                          'Tableau': <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 12l3-3 3 3 4-4M8 21l4-4 4 4M3 4h18M4 4h16v12a1 1 0 01-1 1H5a1 1 0 01-1-1V4z" /></svg>,
-                          'R': <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>,
-                          'Jupyter Notebook': <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" /></svg>,
-                          'GitHub': <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" /></svg>
+                          'Python': <Code className="w-4 h-4" />,
+                          'SQL': <Database className="w-4 h-4" />,
+                          'AWS': <Cloud className="w-4 h-4" />,
+                          'Power BI': <BarChart3 className="w-4 h-4" />,
+                          'Tableau': <BarChart3 className="w-4 h-4" />,
+                          'R': <Code className="w-4 h-4" />,
+                          'Jupyter Notebook': <FileText className="w-4 h-4" />,
+                          'GitHub': <Github className="w-4 h-4" />
                         };
                         return iconMap[skillName] || null;
                       };
@@ -1009,15 +1247,18 @@ function App() {
                       const isProgramming = skillGroup.category === "Languages & Programming";
                       
                       return (
-                        <motion.span
+                        <AnalyticsTooltip
                           key={skillIndex}
-                          whileHover={{ scale: 1.05, y: -2 }}
-                          className={`skill-tag ${isProgramming ? "programming-languages" : ""}`}
-                          title={`${skill} → ${getSkillDescription(skill)}`}
+                          tooltip={`${skill} → ${getSkillDescription(skill)}`}
                         >
-                          {skillIcon && <span className="skill-icon">{skillIcon}</span>}
-                          {skill}
-                        </motion.span>
+                          <motion.span
+                            whileHover={{ scale: 1.05, y: -2 }}
+                            className={`skill-tag ${isProgramming ? "programming-languages" : ""}`}
+                          >
+                            {skillIcon && <span className="skill-icon">{skillIcon}</span>}
+                            {skill}
+                          </motion.span>
+                        </AnalyticsTooltip>
                       );
                     })}
                   </div>

@@ -1,15 +1,25 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Roboto:wght@300;400;500;700&display=swap');
 
 :root {
-  /* New Color Scheme */
-  --primary: #0B3D91;      /* Navy Blue */
-  --secondary: #1ABC9C;    /* Teal */
-  --accent: #F5F6FA;       /* Soft Gray */
-  --text-primary: #2C3E50; /* Dark Gray */
-  --text-secondary: #34495E;
-  --bg-primary: #F5F6FA;
+  /* Analytics-Focused Color Scheme */
+  --primary: #2563EB;      /* Data Blue */
+  --secondary: #059669;    /* Success Green */
+  --accent: #EFF6FF;       /* Light Blue */
+  --text-primary: #1E293B; /* Slate Dark */
+  --text-secondary: #475569;
+  --bg-primary: #F8FAFC;
   --bg-secondary: #FFFFFF;
-  --bg-tertiary: #E8F4FD;
+  --bg-tertiary: #F1F5F9;
+  
+  /* Analytics Theme Colors */
+  --data-blue: #2563EB;    /* Primary Data Color */
+  --insight-green: #059669; /* Success/Insight Color */
+  --warning-orange: #EA580C; /* Warning/Alert Color */
+  --error-red: #DC2626;    /* Error/Anomaly Color */
+  --neutral-gray: #6B7280; /* Neutral Data Color */
+  --chart-purple: #7C3AED; /* Chart/Visualization Color */
+  --trend-cyan: #0891B2;   /* Trend Analysis Color */
+  --metric-yellow: #D97706; /* Metric Highlight Color */
   
   /* Shadows */
   --shadow-sm: 0 2px 4px rgba(11, 61, 145, 0.1);
@@ -17,10 +27,14 @@
   --shadow-lg: 0 8px 16px rgba(11, 61, 145, 0.2);
   --shadow-xl: 0 12px 24px rgba(11, 61, 145, 0.25);
   
-  /* Gradients */
-  --gradient-primary: linear-gradient(135deg, #0B3D91 0%, #1ABC9C 100%);
-  --gradient-secondary: linear-gradient(135deg, #1ABC9C 0%, #0B3D91 100%);
-  --gradient-accent: linear-gradient(135deg, #F5F6FA 0%, #E8F4FD 100%);
+  /* Analytics Gradients */
+  --gradient-primary: linear-gradient(135deg, #2563EB 0%, #059669 100%);
+  --gradient-secondary: linear-gradient(135deg, #059669 0%, #2563EB 100%);
+  --gradient-accent: linear-gradient(135deg, #EFF6FF 0%, #F1F5F9 100%);
+  --gradient-chart: linear-gradient(135deg, #7C3AED 0%, #2563EB 100%);
+  --gradient-trend: linear-gradient(135deg, #0891B2 0%, #059669 100%);
+  --gradient-metric: linear-gradient(135deg, #D97706 0%, #EA580C 100%);
+  --gradient-analytics: linear-gradient(135deg, #2563EB 0%, #059669 25%, #7C3AED 50%, #0891B2 75%, #D97706 100%);
   
   /* Border Radius */
   --radius-sm: 4px;
@@ -154,14 +168,22 @@ p {
 }
 
 .btn-primary {
-  background: var(--gradient-primary);
+  background: var(--gradient-analytics);
+  background-size: 200% 200%;
   color: white;
   box-shadow: var(--shadow-md);
+  animation: gradientShift 3s ease infinite;
 }
 
 .btn-primary:hover {
-  transform: translateY(-2px);
-  box-shadow: var(--shadow-lg);
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 8px 25px rgba(37, 99, 235, 0.4);
+  animation: gradientShift 1s ease infinite;
+}
+
+@keyframes gradientShift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
 }
 
 .btn-secondary {
@@ -330,11 +352,12 @@ p {
 
 /* Navigation */
 nav {
-  background: rgba(245, 246, 250, 0.95);
+  background: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(20px);
-  border-bottom: 1px solid rgba(11, 61, 145, 0.1);
+  border-bottom: 1px solid rgba(37, 99, 235, 0.1);
   box-shadow: var(--shadow-sm);
   position: relative;
+  overflow: hidden;
 }
 
 nav::before {
@@ -353,10 +376,189 @@ nav:hover::before {
   transform: scaleX(1);
 }
 
+/* Navigation Analytics Background */
+.nav-analytics-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+/* Floating Charts */
+.floating-chart {
+  position: absolute;
+  opacity: 0.1;
+  animation: chartFloat 8s ease-in-out infinite;
+}
+
+.chart-1 {
+  top: 20%;
+  left: 10%;
+  width: 40px;
+  height: 30px;
+  display: flex;
+  align-items: end;
+  gap: 2px;
+}
+
+.chart-2 {
+  top: 30%;
+  right: 15%;
+  width: 50px;
+  height: 30px;
+  position: relative;
+}
+
+.chart-3 {
+  top: 60%;
+  left: 20%;
+  width: 30px;
+  height: 30px;
+}
+
+.chart-bar {
+  background: var(--data-blue);
+  border-radius: 2px;
+  width: 6px;
+  animation: barGrow 3s ease-in-out infinite;
+}
+
+.chart-line {
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  background: var(--trend-cyan);
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.chart-dot {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  background: var(--insight-green);
+  border-radius: 50%;
+  top: 50%;
+  transform: translateY(-50%);
+  animation: dotPulse 2s ease-in-out infinite;
+}
+
+.chart-dot:nth-child(2) { left: 20%; animation-delay: 0.5s; }
+.chart-dot:nth-child(3) { left: 50%; animation-delay: 1s; }
+.chart-dot:nth-child(4) { left: 80%; animation-delay: 1.5s; }
+
+.pie-chart {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  position: relative;
+  background: conic-gradient(
+    var(--data-blue) 0deg 120deg,
+    var(--insight-green) 120deg 240deg,
+    var(--chart-purple) 240deg 360deg
+  );
+  animation: pieRotate 6s linear infinite;
+}
+
+.pie-segment {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: transparent;
+  border: 2px solid var(--data-blue);
+  border-top-color: transparent;
+  border-right-color: transparent;
+}
+
+/* Data Points */
+.data-point {
+  position: absolute;
+  font-size: 12px;
+  opacity: 0.3;
+  animation: dataFloat 10s ease-in-out infinite;
+}
+
+.dp-1 { top: 15%; left: 25%; animation-delay: 0s; }
+.dp-2 { top: 25%; right: 30%; animation-delay: 2s; }
+.dp-3 { top: 45%; left: 35%; animation-delay: 4s; }
+.dp-4 { top: 55%; right: 25%; animation-delay: 6s; }
+.dp-5 { top: 75%; left: 45%; animation-delay: 8s; }
+
+/* Grid Lines */
+.grid-line {
+  position: absolute;
+  background: linear-gradient(90deg, transparent, var(--neutral-gray), transparent);
+  opacity: 0.1;
+  animation: gridSlide 12s linear infinite;
+}
+
+.gl-1 {
+  top: 30%;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  animation-delay: 0s;
+}
+
+.gl-2 {
+  top: 60%;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  animation-delay: 4s;
+}
+
+.gl-3 {
+  top: 0;
+  left: 50%;
+  width: 1px;
+  height: 100%;
+  animation-delay: 8s;
+}
+
+/* Chart Animations */
+@keyframes chartFloat {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-10px) rotate(5deg); }
+}
+
+@keyframes barGrow {
+  0%, 100% { transform: scaleY(1); }
+  50% { transform: scaleY(1.2); }
+}
+
+@keyframes dotPulse {
+  0%, 100% { transform: translateY(-50%) scale(1); opacity: 0.6; }
+  50% { transform: translateY(-50%) scale(1.3); opacity: 1; }
+}
+
+@keyframes pieRotate {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes dataFloat {
+  0%, 100% { transform: translateY(0px) rotate(0deg); opacity: 0.3; }
+  50% { transform: translateY(-8px) rotate(10deg); opacity: 0.6; }
+}
+
+@keyframes gridSlide {
+  0% { transform: translateX(-100%); opacity: 0; }
+  50% { opacity: 0.1; }
+  100% { transform: translateX(100%); opacity: 0; }
+}
+
 .nav-container {
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 var(--space-md);
+  position: relative;
+  z-index: 10;
 }
 
 .nav-brand {
@@ -428,7 +630,7 @@ nav:hover::before {
   color: var(--primary);
 }
 
-/* Hero Section */
+/* Enhanced Hero Section with Animated Background */
 .hero {
   background: var(--gradient-accent);
   position: relative;
@@ -438,6 +640,7 @@ nav:hover::before {
   justify-content: center;
 }
 
+/* Animated Background Elements */
 .hero::before {
   content: '';
   position: absolute;
@@ -445,13 +648,59 @@ nav:hover::before {
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(45deg, transparent 30%, rgba(26, 188, 156, 0.1) 50%, transparent 70%);
-  animation: shimmer 3s ease-in-out infinite;
+  background: 
+    radial-gradient(circle at 20% 80%, rgba(99, 102, 241, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(16, 185, 129, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 40% 40%, rgba(139, 92, 246, 0.05) 0%, transparent 50%);
+  animation: shimmer 8s ease-in-out infinite;
+}
+
+.hero::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    linear-gradient(45deg, transparent 40%, rgba(99, 102, 241, 0.05) 50%, transparent 60%),
+    linear-gradient(-45deg, transparent 40%, rgba(16, 185, 129, 0.05) 50%, transparent 60%);
+  animation: shimmer 6s ease-in-out infinite reverse;
+}
+
+/* Floating Animation Elements */
+.hero::before {
+  content: '';
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  background: linear-gradient(45deg, rgba(99, 102, 241, 0.1), rgba(16, 185, 129, 0.1));
+  border-radius: 50%;
+  top: 10%;
+  left: 10%;
+  animation: float 6s ease-in-out infinite;
+}
+
+.hero::after {
+  content: '';
+  position: absolute;
+  width: 150px;
+  height: 150px;
+  background: linear-gradient(45deg, rgba(139, 92, 246, 0.1), rgba(236, 72, 153, 0.1));
+  border-radius: 50%;
+  bottom: 10%;
+  right: 10%;
+  animation: float 8s ease-in-out infinite reverse;
 }
 
 @keyframes shimmer {
-  0%, 100% { transform: translateX(-100%); }
-  50% { transform: translateX(100%); }
+  0%, 100% { transform: translateX(-100%) rotate(0deg); }
+  50% { transform: translateX(100%) rotate(180deg); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-20px) rotate(180deg); }
 }
 
 /* Enhanced Hero Background */
@@ -666,10 +915,17 @@ nav:hover::before {
 }
 
 .skill-tag:hover {
-  background: var(--primary);
+  background: var(--gradient-primary);
   color: white;
-  transform: translateY(-2px);
-  box-shadow: var(--shadow-md);
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 6px 20px rgba(99, 102, 241, 0.4);
+  animation: skillPulse 0.6s ease-in-out;
+}
+
+@keyframes skillPulse {
+  0% { transform: translateY(-3px) scale(1.05); }
+  50% { transform: translateY(-5px) scale(1.1); }
+  100% { transform: translateY(-3px) scale(1.05); }
 }
 
 /* Programming Languages Specific Styling */
@@ -915,57 +1171,65 @@ nav:hover::before {
   white-space: nowrap;
 }
 
-/* Tech Tag Categories */
+/* Enhanced Tech Tag Categories with Vibrant Colors */
 .tech-tag.python {
-  background: rgba(52, 152, 219, 0.1);
-  color: #2980b9;
-  border-color: rgba(52, 152, 219, 0.3);
+  background: linear-gradient(135deg, rgba(37, 99, 235, 0.1), rgba(5, 150, 105, 0.1));
+  color: var(--data-blue);
+  border-color: rgba(37, 99, 235, 0.3);
+  animation: pulse 2s ease-in-out infinite;
 }
 
 .tech-tag.python:hover {
-  background: #2980b9;
+  background: var(--gradient-primary);
   color: white;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(52, 152, 219, 0.3);
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 6px 20px rgba(37, 99, 235, 0.4);
+  animation: none;
 }
 
 .tech-tag.sql {
-  background: rgba(46, 204, 113, 0.1);
-  color: #27ae60;
-  border-color: rgba(46, 204, 113, 0.3);
+  background: linear-gradient(135deg, rgba(5, 150, 105, 0.1), rgba(8, 145, 178, 0.1));
+  color: var(--insight-green);
+  border-color: rgba(5, 150, 105, 0.3);
+  animation: pulse 2s ease-in-out infinite 0.5s;
 }
 
 .tech-tag.sql:hover {
-  background: #27ae60;
+  background: var(--gradient-secondary);
   color: white;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(46, 204, 113, 0.3);
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 6px 20px rgba(5, 150, 105, 0.4);
+  animation: none;
 }
 
 .tech-tag.ml {
-  background: rgba(155, 89, 182, 0.1);
-  color: #8e44ad;
-  border-color: rgba(155, 89, 182, 0.3);
+  background: linear-gradient(135deg, rgba(124, 58, 237, 0.1), rgba(8, 145, 178, 0.1));
+  color: var(--chart-purple);
+  border-color: rgba(124, 58, 237, 0.3);
+  animation: pulse 2s ease-in-out infinite 1s;
 }
 
 .tech-tag.ml:hover {
-  background: #8e44ad;
+  background: var(--gradient-chart);
   color: white;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(155, 89, 182, 0.3);
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 6px 20px rgba(124, 58, 237, 0.4);
+  animation: none;
 }
 
 .tech-tag.viz {
-  background: rgba(230, 126, 34, 0.1);
-  color: #d35400;
-  border-color: rgba(230, 126, 34, 0.3);
+  background: linear-gradient(135deg, rgba(217, 119, 6, 0.1), rgba(234, 88, 12, 0.1));
+  color: var(--metric-yellow);
+  border-color: rgba(217, 119, 6, 0.3);
+  animation: pulse 2s ease-in-out infinite 1.5s;
 }
 
 .tech-tag.viz:hover {
-  background: #d35400;
+  background: var(--gradient-metric);
   color: white;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(230, 126, 34, 0.3);
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 6px 20px rgba(217, 119, 6, 0.4);
+  animation: none;
 }
 
 .tech-tag.cloud {
@@ -1960,19 +2224,9 @@ nav:hover::before {
   flex-shrink: 0;
 }
 
-/* Programming Languages Special Styling */
+/* Programming Languages - Now matches other skill icons */
 .skill-tag.programming-languages {
-  background: var(--gradient-secondary);
-  color: white;
-  box-shadow: 0 4px 15px rgba(26, 188, 156, 0.3);
-  font-weight: 600;
-  font-size: 1rem;
-  padding: 0.875rem 1.25rem;
-}
-
-.skill-tag.programming-languages:hover {
-  transform: translateY(-3px) scale(1.02);
-  box-shadow: 0 8px 25px rgba(26, 188, 156, 0.4);
+  /* Remove special styling to match other skills */
 }
 
 /* Skill Subgroups for Technical Competencies */
@@ -2792,5 +3046,1040 @@ nav:hover::before {
   
   .highlight-item span {
     font-size: 0.85rem;
+  }
+}
+
+/* Animated Particles Background */
+.particles-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+  overflow: hidden;
+}
+
+.particle {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: var(--primary);
+  border-radius: 50%;
+  animation: particleFloat 20s linear infinite;
+  opacity: 0.6;
+}
+
+.particle:nth-child(1) { left: 10%; animation-delay: 0s; }
+.particle:nth-child(2) { left: 20%; animation-delay: 2s; }
+.particle:nth-child(3) { left: 30%; animation-delay: 4s; }
+.particle:nth-child(4) { left: 40%; animation-delay: 6s; }
+.particle:nth-child(5) { left: 50%; animation-delay: 8s; }
+.particle:nth-child(6) { left: 60%; animation-delay: 10s; }
+.particle:nth-child(7) { left: 70%; animation-delay: 12s; }
+.particle:nth-child(8) { left: 80%; animation-delay: 14s; }
+.particle:nth-child(9) { left: 90%; animation-delay: 16s; }
+.particle:nth-child(10) { left: 95%; animation-delay: 18s; }
+
+@keyframes particleFloat {
+  0% {
+    transform: translateY(100vh) rotate(0deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.6;
+  }
+  90% {
+    opacity: 0.6;
+  }
+  100% {
+    transform: translateY(-100px) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+/* Enhanced Card Hover Effects */
+.card:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 20px 40px rgba(99, 102, 241, 0.15);
+  border-color: var(--primary);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(240, 249, 255, 0.95));
+}
+
+/* Animated Background for Sections */
+.section {
+  position: relative;
+  overflow: hidden;
+}
+
+.section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    radial-gradient(circle at 25% 25%, rgba(99, 102, 241, 0.03) 0%, transparent 50%),
+    radial-gradient(circle at 75% 75%, rgba(16, 185, 129, 0.03) 0%, transparent 50%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.card:hover::before {
+  transform: scaleX(1);
+  background: var(--gradient-rainbow);
+  background-size: 200% 200%;
+  animation: gradientShift 2s ease infinite;
+}
+
+/* Glowing Effect for Important Elements */
+.glow-effect {
+  position: relative;
+}
+
+.glow-effect::after {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: var(--gradient-analytics);
+  background-size: 200% 200%;
+  border-radius: inherit;
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  animation: gradientShift 3s ease infinite;
+}
+
+.glow-effect:hover::after {
+  opacity: 0.3;
+}
+
+/* Enhanced Navigation */
+.nav-link:hover {
+  color: var(--primary);
+  background: rgba(99, 102, 241, 0.1);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(99, 102, 241, 0.2);
+}
+
+.nav-link.active {
+  background: var(--gradient-primary);
+  color: white;
+  box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+}
+
+/* Animated Section Titles */
+.section-title {
+  position: relative;
+  overflow: hidden;
+}
+
+.section-title::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: var(--gradient-analytics);
+  background-size: 200% 200%;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.6s ease;
+  animation: gradientShift 3s ease infinite;
+}
+
+.section-title:hover::after {
+  transform: scaleX(1);
+}
+
+/* Enhanced Analytics Animations and Visual Effects */
+
+/* Data Flow Animation */
+@keyframes dataFlow {
+  0% { transform: translateX(-100%) scale(0.8); opacity: 0; }
+  20% { opacity: 1; }
+  80% { opacity: 1; }
+  100% { transform: translateX(100vw) scale(1.2); opacity: 0; }
+}
+
+/* Pulse Wave Animation */
+@keyframes pulseWave {
+  0% { transform: scale(1); opacity: 0.8; }
+  50% { transform: scale(1.1); opacity: 0.4; }
+  100% { transform: scale(1); opacity: 0.8; }
+}
+
+/* Rotating Data Points */
+@keyframes rotateData {
+  0% { transform: rotate(0deg) scale(1); }
+  50% { transform: rotate(180deg) scale(1.1); }
+  100% { transform: rotate(360deg) scale(1); }
+}
+
+/* Floating Metrics */
+@keyframes floatMetrics {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  25% { transform: translateY(-10px) rotate(2deg); }
+  50% { transform: translateY(-5px) rotate(-1deg); }
+  75% { transform: translateY(-15px) rotate(3deg); }
+}
+
+/* Data Connection Lines */
+@keyframes dataConnect {
+  0% { stroke-dashoffset: 100; opacity: 0; }
+  50% { opacity: 1; }
+  100% { stroke-dashoffset: 0; opacity: 0.8; }
+}
+
+/* Chart Building Animation */
+@keyframes chartBuild {
+  0% { height: 0; opacity: 0; }
+  50% { opacity: 1; }
+  100% { height: var(--chart-height); opacity: 1; }
+}
+
+/* Data Particle Burst */
+@keyframes dataBurst {
+  0% { transform: scale(0) rotate(0deg); opacity: 1; }
+  50% { transform: scale(1.5) rotate(180deg); opacity: 0.8; }
+  100% { transform: scale(2) rotate(360deg); opacity: 0; }
+}
+
+/* Analytics Grid Pattern */
+@keyframes gridPattern {
+  0% { transform: translateX(-100%) translateY(-100%); }
+  100% { transform: translateX(100%) translateY(100%); }
+}
+
+/* Data Stream Effect */
+@keyframes dataStream {
+  0% { transform: translateY(-100vh) rotate(0deg); }
+  100% { transform: translateY(100vh) rotate(360deg); }
+}
+
+/* Enhanced Hero Section with Data Analytics Elements */
+.hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    radial-gradient(circle at 20% 80%, rgba(37, 99, 235, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(5, 150, 105, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 40% 40%, rgba(124, 58, 237, 0.05) 0%, transparent 50%);
+  animation: shimmer 8s ease-in-out infinite;
+}
+
+/* Data Analytics Background Elements */
+.hero::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    linear-gradient(45deg, transparent 40%, rgba(37, 99, 235, 0.05) 50%, transparent 60%),
+    linear-gradient(-45deg, transparent 40%, rgba(5, 150, 105, 0.05) 50%, transparent 60%);
+  animation: shimmer 6s ease-in-out infinite reverse;
+}
+
+/* Floating Data Elements */
+.hero-data-elements {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.data-element {
+  position: absolute;
+  font-size: 1.5rem;
+  opacity: 0.3;
+  animation: floatMetrics 8s ease-in-out infinite;
+}
+
+.data-element:nth-child(1) { top: 15%; left: 10%; animation-delay: 0s; }
+.data-element:nth-child(2) { top: 25%; right: 15%; animation-delay: 2s; }
+.data-element:nth-child(3) { top: 45%; left: 20%; animation-delay: 4s; }
+.data-element:nth-child(4) { top: 65%; right: 25%; animation-delay: 6s; }
+.data-element:nth-child(5) { top: 35%; left: 80%; animation-delay: 1s; }
+.data-element:nth-child(6) { top: 75%; left: 70%; animation-delay: 3s; }
+
+/* Data Flow Lines */
+.data-flow-line {
+  position: absolute;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--data-blue), transparent);
+  animation: dataFlow 10s linear infinite;
+  opacity: 0.6;
+}
+
+.data-flow-line:nth-child(1) { top: 20%; width: 200px; animation-delay: 0s; }
+.data-flow-line:nth-child(2) { top: 40%; width: 150px; animation-delay: 3s; }
+.data-flow-line:nth-child(3) { top: 60%; width: 180px; animation-delay: 6s; }
+
+/* Enhanced Section Animations */
+.section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    radial-gradient(circle at 25% 25%, rgba(37, 99, 235, 0.03) 0%, transparent 50%),
+    radial-gradient(circle at 75% 75%, rgba(5, 150, 105, 0.03) 0%, transparent 50%);
+  pointer-events: none;
+  z-index: 0;
+  animation: pulseWave 4s ease-in-out infinite;
+}
+
+/* Enhanced Card Hover Effects */
+.card:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 20px 40px rgba(37, 99, 235, 0.15);
+  border-color: var(--primary);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(239, 246, 255, 0.95));
+}
+
+.card::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(45deg, transparent, rgba(37, 99, 235, 0.05), transparent);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+.card:hover::after {
+  opacity: 1;
+}
+
+/* Enhanced Project Cards with Data Analytics Theme */
+.project-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    linear-gradient(135deg, rgba(37, 99, 235, 0.05) 0%, transparent 50%),
+    linear-gradient(-135deg, rgba(5, 150, 105, 0.05) 0%, transparent 50%);
+  border-radius: inherit;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: -1;
+}
+
+.project-card:hover::before {
+  opacity: 1;
+}
+
+/* Data Analytics Icons Animation */
+.tech-tag svg {
+  transition: all 0.3s ease;
+}
+
+.tech-tag:hover svg {
+  transform: scale(1.2) rotate(10deg);
+  color: var(--primary);
+}
+
+/* Enhanced Skill Tags with Data Flow */
+.skill-tag::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  transition: left 0.5s ease;
+}
+
+.skill-tag:hover::before {
+  left: 100%;
+}
+
+/* Data Connection Lines for Skills */
+.skill-category-card::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--data-blue), transparent);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.skill-category-card:hover::after {
+  opacity: 0.3;
+}
+
+/* Enhanced Experience Timeline */
+.experience-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 100%;
+  background: var(--gradient-primary);
+  border-radius: 2px;
+  transform: scaleY(0);
+  transition: transform 0.3s ease;
+}
+
+.experience-card:hover::before {
+  transform: scaleY(1);
+}
+
+/* Data Metrics Display */
+.metrics-display {
+  position: relative;
+  display: flex;
+  justify-content: space-around;
+  margin: 2rem 0;
+  padding: 1rem;
+  background: rgba(239, 246, 255, 0.5);
+  border-radius: var(--radius-lg);
+  border: 1px solid rgba(37, 99, 235, 0.1);
+}
+
+.metric-item {
+  text-align: center;
+  padding: 1rem;
+  position: relative;
+}
+
+.metric-value {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--data-blue);
+  display: block;
+  animation: pulseWave 2s ease-in-out infinite;
+}
+
+.metric-label {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  margin-top: 0.5rem;
+}
+
+/* Enhanced Contact Section */
+.contact-item {
+  position: relative;
+  overflow: hidden;
+}
+
+.contact-item::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(37, 99, 235, 0.1), transparent);
+  transition: left 0.5s ease;
+}
+
+.contact-item:hover::before {
+  left: 100%;
+}
+
+/* Data Analytics Loading Animation */
+@keyframes dataLoad {
+  0% { transform: scale(0) rotate(0deg); opacity: 0; }
+  50% { transform: scale(1.2) rotate(180deg); opacity: 1; }
+  100% { transform: scale(1) rotate(360deg); opacity: 1; }
+}
+
+.loading-data {
+  animation: dataLoad 1s ease-in-out;
+}
+
+/* Enhanced Navigation with Data Flow */
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  background: var(--gradient-primary);
+  transition: all 0.3s ease;
+  transform: translateX(-50%);
+}
+
+.nav-link:hover::after,
+.nav-link.active::after {
+  width: 100%;
+}
+
+/* Data Analytics Grid Background */
+.analytics-grid {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    linear-gradient(rgba(37, 99, 235, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(37, 99, 235, 0.03) 1px, transparent 1px);
+  background-size: 50px 50px;
+  pointer-events: none;
+  z-index: -1;
+  animation: gridPattern 20s linear infinite;
+}
+
+/* Enhanced Scroll Animations */
+@keyframes slideInFromLeft {
+  0% { transform: translateX(-100%); opacity: 0; }
+  100% { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes slideInFromRight {
+  0% { transform: translateX(100%); opacity: 0; }
+  100% { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes slideInFromBottom {
+  0% { transform: translateY(100%); opacity: 0; }
+  100% { transform: translateY(0); opacity: 1; }
+}
+
+.slide-in-left {
+  animation: slideInFromLeft 0.8s ease-out;
+}
+
+.slide-in-right {
+  animation: slideInFromRight 0.8s ease-out;
+}
+
+.slide-in-bottom {
+  animation: slideInFromBottom 0.8s ease-out;
+}
+
+/* Data Analytics Tooltips */
+.tooltip {
+  position: relative;
+  cursor: help;
+}
+
+.tooltip::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--text-primary);
+  color: white;
+  padding: 0.5rem;
+  border-radius: var(--radius-sm);
+  font-size: 0.75rem;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+  z-index: 1000;
+}
+
+.tooltip:hover::after {
+  opacity: 1;
+}
+
+/* Enhanced Button Animations */
+.btn::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  transition: width 0.6s ease, height 0.6s ease;
+}
+
+.btn:hover::after {
+  width: 300px;
+  height: 300px;
+}
+
+/* Data Analytics Progress Bars */
+.progress-bar {
+  width: 100%;
+  height: 8px;
+  background: rgba(37, 99, 235, 0.1);
+  border-radius: var(--radius-full);
+  overflow: hidden;
+  position: relative;
+}
+
+.progress-fill {
+  height: 100%;
+  background: var(--gradient-primary);
+  border-radius: var(--radius-full);
+  transition: width 1s ease;
+  position: relative;
+}
+
+.progress-fill::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  animation: shimmer 2s ease-in-out infinite;
+}
+
+/* Enhanced Mobile Responsiveness */
+@media (max-width: 768px) {
+  .data-element {
+    font-size: 1rem;
+  }
+  
+  .metrics-display {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .metric-value {
+    font-size: 1.5rem;
+  }
+  
+  .analytics-grid {
+    background-size: 30px 30px;
+  }
+}
+
+/* Data Analytics Focus Indicators */
+.focus-indicator {
+  position: relative;
+}
+
+.focus-indicator::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: var(--gradient-primary);
+  border-radius: inherit;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: -1;
+}
+
+.focus-indicator:focus::before {
+  opacity: 0.3;
+}
+
+/* Enhanced Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Enhanced Skill Progress Styles */
+.skill-progress {
+  background: var(--bg-secondary);
+  border: 1px solid rgba(37, 99, 235, 0.1);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem;
+  box-shadow: var(--shadow-sm);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.skill-progress::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(37, 99, 235, 0.05) 0%, transparent 50%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.skill-progress:hover::before {
+  opacity: 1;
+}
+
+.skill-progress:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-lg);
+  border-color: var(--primary);
+}
+
+.skill-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.skill-icon {
+  color: var(--primary);
+  margin-right: 0.5rem;
+}
+
+.skill-name {
+  font-weight: 600;
+  color: var(--text-primary);
+  flex: 1;
+}
+
+.skill-percentage {
+  font-weight: 700;
+  color: var(--data-blue);
+  font-size: 1.125rem;
+}
+
+/* Enhanced Tooltip Styles */
+.tooltip {
+  position: relative;
+  cursor: help;
+  display: inline-block;
+}
+
+.tooltip::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--text-primary);
+  color: white;
+  padding: 0.75rem 1rem;
+  border-radius: var(--radius-sm);
+  font-size: 0.75rem;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.3s ease;
+  z-index: 1000;
+  box-shadow: var(--shadow-lg);
+  max-width: 250px;
+  white-space: normal;
+  text-align: center;
+  line-height: 1.4;
+}
+
+.tooltip::before {
+  content: '';
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 5px solid transparent;
+  border-top-color: var(--text-primary);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 1000;
+}
+
+.tooltip:hover::after,
+.tooltip:hover::before {
+  opacity: 1;
+}
+
+/* Interactive Chart Styles */
+.interactive-chart {
+  background: var(--bg-secondary);
+  border-radius: var(--radius-lg);
+  padding: 2rem;
+  box-shadow: var(--shadow-md);
+  margin: 2rem 0;
+}
+
+.chart-container {
+  display: flex;
+  align-items: end;
+  justify-content: space-around;
+  height: 200px;
+  gap: 1rem;
+}
+
+.chart-bar {
+  background: var(--gradient-primary);
+  border-radius: var(--radius-sm) var(--radius-sm) 0 0;
+  min-width: 40px;
+  position: relative;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.chart-bar:hover {
+  transform: scale(1.05);
+  box-shadow: var(--shadow-lg);
+}
+
+.chart-label {
+  position: absolute;
+  bottom: -25px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  white-space: nowrap;
+}
+
+/* Enhanced Project Category Icons */
+.project-category-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background: var(--gradient-primary);
+  border-radius: 50%;
+  color: white;
+  margin-left: 1rem;
+}
+
+.project-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+/* Enhanced Metrics Display */
+.metrics-display {
+  background: linear-gradient(135deg, rgba(37, 99, 235, 0.05) 0%, rgba(5, 150, 105, 0.05) 100%);
+  border: 1px solid rgba(37, 99, 235, 0.1);
+  border-radius: var(--radius-lg);
+  padding: 2rem;
+  margin: 2rem 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.metrics-display::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    radial-gradient(circle at 20% 80%, rgba(37, 99, 235, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(5, 150, 105, 0.1) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+.metric-item {
+  text-align: center;
+  padding: 1rem;
+  position: relative;
+  z-index: 1;
+}
+
+.metric-value {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: var(--data-blue);
+  display: block;
+  animation: pulseWave 3s ease-in-out infinite;
+  text-shadow: 0 2px 4px rgba(37, 99, 235, 0.2);
+}
+
+.metric-label {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  margin-top: 0.5rem;
+  font-weight: 500;
+}
+
+/* Enhanced Data Elements */
+.hero-data-elements {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.data-element {
+  position: absolute;
+  font-size: 2rem;
+  opacity: 0.2;
+  animation: floatMetrics 10s ease-in-out infinite;
+  filter: drop-shadow(0 2px 4px rgba(37, 99, 235, 0.3));
+}
+
+.data-element:nth-child(1) { top: 15%; left: 10%; animation-delay: 0s; }
+.data-element:nth-child(2) { top: 25%; right: 15%; animation-delay: 2s; }
+.data-element:nth-child(3) { top: 45%; left: 20%; animation-delay: 4s; }
+.data-element:nth-child(4) { top: 65%; right: 25%; animation-delay: 6s; }
+.data-element:nth-child(5) { top: 35%; left: 80%; animation-delay: 1s; }
+.data-element:nth-child(6) { top: 75%; left: 70%; animation-delay: 3s; }
+
+/* Enhanced Data Flow Lines */
+.data-flow-line {
+  position: absolute;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, var(--data-blue), transparent);
+  animation: dataFlow 15s linear infinite;
+  opacity: 0.4;
+  border-radius: 2px;
+  box-shadow: 0 0 10px rgba(37, 99, 235, 0.3);
+}
+
+.data-flow-line:nth-child(7) { top: 20%; width: 200px; animation-delay: 0s; }
+.data-flow-line:nth-child(8) { top: 40%; width: 150px; animation-delay: 5s; }
+.data-flow-line:nth-child(9) { top: 60%; width: 180px; animation-delay: 10s; }
+
+/* Enhanced Competency Tags */
+.competency-tag.modeling {
+  background: linear-gradient(135deg, rgba(37, 99, 235, 0.1), rgba(8, 145, 178, 0.1));
+  color: var(--data-blue);
+  border-color: rgba(37, 99, 235, 0.3);
+}
+
+.competency-tag.modeling:hover {
+  background: var(--gradient-trend);
+  color: white;
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 6px 20px rgba(8, 145, 178, 0.4);
+}
+
+.competency-tag.data {
+  background: linear-gradient(135deg, rgba(5, 150, 105, 0.1), rgba(124, 58, 237, 0.1));
+  color: var(--insight-green);
+  border-color: rgba(5, 150, 105, 0.3);
+}
+
+.competency-tag.data:hover {
+  background: var(--gradient-chart);
+  color: white;
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 6px 20px rgba(124, 58, 237, 0.4);
+}
+
+.competency-tag.soft {
+  background: linear-gradient(135deg, rgba(217, 119, 6, 0.1), rgba(234, 88, 12, 0.1));
+  color: var(--metric-yellow);
+  border-color: rgba(217, 119, 6, 0.3);
+}
+
+.competency-tag.soft:hover {
+  background: var(--gradient-metric);
+  color: white;
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 6px 20px rgba(217, 119, 6, 0.4);
+}
+
+/* Enhanced Skill Subgroup Titles */
+.skill-subgroup-title {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 1rem;
+  padding: 0.5rem 1rem;
+  background: rgba(37, 99, 235, 0.05);
+  border-radius: var(--radius-md);
+  border-left: 3px solid var(--primary);
+}
+
+.skill-subgroup-title svg {
+  color: var(--primary);
+}
+
+/* Enhanced Mobile Responsiveness */
+@media (max-width: 768px) {
+  .skill-progress {
+    padding: 1rem;
+  }
+  
+  .skill-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+  
+  .metric-value {
+    font-size: 2rem;
+  }
+  
+  .data-element {
+    font-size: 1.5rem;
+  }
+  
+  .chart-container {
+    height: 150px;
+    gap: 0.5rem;
+  }
+  
+  .chart-bar {
+    min-width: 30px;
+  }
+  
+  .tooltip::after {
+    font-size: 0.7rem;
+    max-width: 200px;
+  }
+}
+
+@media (max-width: 480px) {
+  .metrics-display {
+    padding: 1rem;
+  }
+  
+  .metric-item {
+    padding: 0.5rem;
+  }
+  
+  .metric-value {
+    font-size: 1.75rem;
+  }
+  
+  .skill-progress {
+    padding: 0.75rem;
+  }
+  
+  .chart-container {
+    height: 120px;
+  }
+  
+  .chart-bar {
+    min-width: 25px;
   }
 }
