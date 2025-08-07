@@ -3588,7 +3588,7 @@ nav:hover::before {
 .tooltip::after {
   content: attr(data-tooltip);
   position: absolute;
-  bottom: 100%;
+  bottom: calc(100% + 15px);
   left: 50%;
   transform: translateX(-50%);
   background: #1f2937;
@@ -3610,7 +3610,7 @@ nav:hover::before {
 .tooltip::before {
   content: "";
   position: absolute;
-  bottom: 100%;
+  bottom: calc(100% + 10px);
   left: 50%;
   transform: translateX(-50%);
   border: 5px solid transparent;
@@ -3795,7 +3795,7 @@ nav:hover::before {
 .tooltip::after {
   content: attr(data-tooltip);
   position: absolute;
-  bottom: 100%;
+  bottom: calc(100% + 15px);
   left: 50%;
   transform: translateX(-50%);
   background: #1f2937;
@@ -3818,7 +3818,7 @@ nav:hover::before {
 .tooltip::before {
   content: '';
   position: absolute;
-  bottom: 100%;
+  bottom: calc(100% + 10px);
   left: 50%;
   transform: translateX(-50%);
   border: 5px solid transparent;
