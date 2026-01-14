@@ -151,11 +151,11 @@ function App() {
   // Enhanced Project Card with Analytics
   const EnhancedProjectCard = ({ project, index }) => (
     <motion.div
-      key={index}
+      key={`${project.title}-${index}`}
       initial={{ opacity: 0, y: 30, scale: 0.9 }}
       whileInView={{ opacity: 1, y: 0, scale: 1 }}
       transition={{ duration: 0.8, delay: index * 0.1, type: "spring", bounce: 0.3 }}
-      viewport={{ once: true }}
+      viewport={{ once: false, margin: "-100px" }}
       className="project-card glow-effect"
       whileHover={{ 
         y: -10, 
@@ -364,6 +364,22 @@ function App() {
       github: "https://github.com/shraddhac0206/bike-sharing-analytics-excel-python", // update if needed
       live: null,
       category: "data"
+    },
+    {
+      title: "Autocorrect AI Tool",
+      description: "Built an intelligent autocorrect tool that combines TextBlob for fast spelling corrections and BERT for context-aware corrections, addressing limitations of traditional spell checkers. Developed a Flask web interface and CLI tool for batch processing, enabling both basic and context-aware corrections. The BERT-enhanced mode understands word relationships and context, correctly handling cases like 'I like your short' → 'I like your shirt', which basic spell checkers cannot detect.",
+      technologies: ["Python", "BERT", "TextBlob", "Flask", "NLTK", "PyTorch", "Transformers", "Natural Language Processing"],
+      github: "https://github.com/shraddhac0206/autocorrect-ai",
+      live: null,
+      category: "ai"
+    },
+    {
+      title: "Resume Parser AI",
+      description: "Developed an intelligent resume parsing system using NLP and machine learning to automate resume screening. Implemented text preprocessing with NLTK, TF-IDF feature extraction, and K-Means clustering to group similar candidates. Built a scoring system (0-10) that evaluates resumes based on technical skills, content quality, and category relevance across 25+ job categories. Created a Flask web application with file upload support (TXT, PDF, DOC, DOCX) and interactive score visualization, enabling HR teams to efficiently screen and rank candidates.",
+      technologies: ["Python", "NLP", "NLTK", "Scikit-learn", "TF-IDF", "K-Means Clustering", "Flask", "Pandas", "Machine Learning"],
+      github: "https://github.com/shraddhac0206/resume-parser-ai",
+      live: null,
+      category: "ai"
     }    
   ];
 
@@ -412,11 +428,11 @@ function App() {
       company: "The University of Texas at Arlington",
       duration: "January 2025 – Present",
       achievements: [
-        "Orchestrated SQL querying, database design, and data warehousing labs and assignments for 160+ students, achieving 90% positive feedback on clarity and relevance to industry applications.",
+        "Orchestrated SQL querying, database design, and data warehousing labs and assignments for 160+ students, achieving 95% positive feedback on clarity and relevance to industry applications.",
         "Delivered training on data visualization, forecasting, and statistical analysis (Power BI, Tableau, Excel, Python) to 300+ graduate students, simulating client-facing presentations and reinforcing data integrity.",
         "Collaborated on 3 faculty-led research projects, implementing machine learning, automation techniques, and documenting architecture-related code logic."
       ],
-      skills: ["Python", "Excel", "Tableau", "Jupyter Notebook", "Scikit-learn", "Pandas", "Matplotlib", "LaTeX", "Google Scholar", "Time Series Forecasting (ARIMA, Exponential Smoothing)", "Classification Algorithms (Decision Trees, Logistic Regression)" ]
+      skills: ["Python", "Excel", "Tableau", "Jupyter Notebook", "Scikit-learn", "Pandas", "Matplotlib", "Time Series Forecasting (ARIMA, Exponential Smoothing)", "Classification Algorithms (Decision Trees, Logistic Regression)" ]
     },
     {
       title: "Jr. Data Analyst",
@@ -709,8 +725,7 @@ function App() {
                 transition={{ duration: 0.8, delay: 0.4 }}
                 className="hero-tagline"
               >
-                Transforming complex data into strategic insights that drive business growth and innovation.
-              </motion.p>
+                Data doesn't have to be boring! I turn spreadsheets, dashboards, and messy data into insights people actually understand—and use.             </motion.p>
               
               <motion.div
                 initial={{ opacity: 0, y: 30 }}
@@ -738,7 +753,7 @@ function App() {
                 </motion.button>
                 <motion.a 
                   href={Shraddha_Cha_Resume} 
-                  download="Shraddha_Cha_Resume.pdf" 
+                  download="Shraddha_Chauhan_Resume.pdf" 
                   className="btn btn-outline glow-effect"
                   whileHover={{ scale: 1.05, y: -5 }}
                   whileTap={{ scale: 0.95 }}
@@ -759,7 +774,7 @@ function App() {
               className="hero-quick-links"
             >
               <motion.a
-                href="https://www.linkedin.com/in/shraddha-chauhan-235a61233/"
+                href="https://www.linkedin.com/in/shraddha-chauhan-2626sc/"
                 rel="noopener noreferrer"
                 className="quick-link"
                 title="LinkedIn"
@@ -806,7 +821,7 @@ function App() {
             <h2 className="section-title">About Me</h2>
             <div className="max-w-4xl mx-auto">
               <p className="section-subtitle text-lg leading-relaxed">
-                As a dedicated data analyst and business analyst, I specialize in transforming complex datasets into actionable insights that drive strategic decision-making. With expertise in statistical analysis, data visualization, and predictive modeling, I help organizations optimize performance and uncover growth opportunities through data-driven solutions.
+              I work as a data analyst and business analyst, focusing on turning data into insights that businesses can actually use. I enjoy digging into datasets, finding patterns, and presenting results in a clear way that supports smarter strategies and real business impact.
               </p>
             </div>
           </motion.div>
@@ -910,20 +925,17 @@ function App() {
                 
                 <div className="expertise-content">
                   <p className="text-gray-600 mb-6 leading-relaxed">
-                    As a data and business analyst, I specialize in bridging the gap between raw data and strategic decision-making. From data wrangling and pipeline development to predictive modeling and interactive dashboard creation, I transform complex datasets into clear, actionable insights.
+                  I make data useful. As a data and business analyst, I help organizations move from raw numbers to clear insights that guide decisions. My work ranges from data wrangling and modeling to creating dashboards that people actually enjoy using.
                   </p>
                   
                   <p className="text-gray-600 mb-6 leading-relaxed">
-                    My expertise encompasses a comprehensive toolkit including programming, data visualization, cloud platforms, and machine learning. However, my approach prioritizes problem-solving over tools, focusing on understanding business needs and delivering sustainable, impactful insights.
-                  </p>
+                    I’ve worked with tools across analytics, visualization, cloud, and machine learning, but I believe good analysis starts with asking the right business questions. That mindset has shaped my experience in customer behavior analysis, process optimization, and automation.                  </p>
                   
                   <p className="text-gray-600 mb-6 leading-relaxed">
-                    My project experience spans customer behavior analysis, process optimization, and operational automation. I continuously seek innovative ways to enhance insight accessibility, scalability, and predictive value.
+                  Lately, I’ve been focusing on how AI, automation, and cloud analytics can make insights faster, more scalable, and easier to act on—while ensuring the story behind the data is clear and meaningful.
                   </p>
                   
-                  <p className="text-gray-600 mb-4 leading-relaxed">
-                    Currently, I am exploring the integration of AI, automation, and cloud analytics to accelerate decision-making processes, while leveraging effective data storytelling to translate insights into tangible business outcomes.
-                  </p>
+                
                   
                   <div className="focus-areas-container">
                     <h4 className="focus-areas-title">Focus Areas</h4>
@@ -1074,7 +1086,7 @@ function App() {
           {/* Projects Grid */}
           <div className="grid grid-3 gap-8">
             {filteredProjects.map((project, index) => (
-              <EnhancedProjectCard project={project} index={index} />
+              <EnhancedProjectCard key={`project-${project.title}-${index}`} project={project} index={index} />
             ))}
           </div>
 
