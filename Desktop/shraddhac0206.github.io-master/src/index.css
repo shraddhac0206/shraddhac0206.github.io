@@ -88,6 +88,7 @@ p {
   font-family: 'Roboto', sans-serif;
   font-size: clamp(0.875rem, 1.5vw, 1rem);
   line-height: 1.6;
+  text-align: justify;
 }
 
 /* Layout */
@@ -355,7 +356,7 @@ p {
 /* Navigation */
 nav {
   background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(20px);
+  backdrop-filter: none;
   border-bottom: 1px solid rgba(37, 99, 235, 0.1);
   box-shadow: var(--shadow-sm);
   position: relative;
@@ -1142,6 +1143,7 @@ nav:hover::before {
   margin-bottom: 1.5rem;
   flex-grow: 1;
   font-size: 0.95rem;
+  text-align: justify;
 }
 
 /* Tech Stack */
@@ -1569,6 +1571,10 @@ nav:hover::before {
   padding: 1.5rem;
   border: 1px solid rgba(11, 61, 145, 0.1);
   transition: all 0.3s ease;
+}
+
+.timeline-content p {
+  text-align: justify;
 }
 
 .timeline-content:hover {

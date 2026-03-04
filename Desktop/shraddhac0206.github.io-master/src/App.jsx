@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Mail, Phone, Linkedin, Github, Code, ExternalLink, Database, Brain, BarChart3, Globe, Cloud, FileText, TrendingUp, PieChart, Activity, Zap, Target, Users, Award, Star, CheckCircle, ArrowUpRight, BarChart, LineChart, ScatterChart } from 'lucide-react';
 import './index.css';
-import Shraddha_Cha_Resume from './Shraddha Chauhan Resume.pdf'
+import Shraddha_Cha_Resume from './Shraddha_C_BA_Resume (1).pdf'
 
 function App() {
   const [activeSection, setActiveSection] = useState('home');
@@ -266,13 +266,13 @@ function App() {
 
   const projects = [
     {
-      title: "Holos Agri Assistant (AI Chatbot)",
-      description: "Designed and deployed an AI-powered-multi-source RAG chatbot using FastAPI, LangChain, and FAISS to deliver agricultural guidance; integrated CSV, PDF, and JPG, enabling farmers to query 10,000+ knowledge records with high accuracy. Built modular pipelines for document ingestion, embeddings, and retrieval, and implemented AWS Lambda + API Gateway deployment, improving response speed by 40% and enabling scalable access through a Streamlit-based web interface.",
-      technologies: ["FastAPI", "LangChain", "FAISS", "OpenAI", "Python", "AWS"],
+      title: "Holos Agri Assistant — Decision Support Chatbot",
+      description: "Gathered and translated business requirements into an AI-powered decision support solution that centralized CSV, PDF, and image data, enabling secure querying of 10,000+ knowledge records and improving information retrieval efficiency. Conducted data flow mapping, validation, and performance testing to ensure accurate outputs and scalable AWS deployment, reducing response latency by 40% and improving end-user experience.",
+      technologies: ["FastAPI", "LangChain", "Python", "AWS", "Data Architecture", "Requirements Analysis"],
       github: "https://github.com/shraddhac0206/Holos-Agri-Assistant",
       live: null,
       achievement: null,
-      category: "ai"
+      category: "requirements"
     },
     {
       title: "Real-Time ETL Pipeline with Monitoring Dashboard",
@@ -290,7 +290,7 @@ function App() {
       github: "https://github.com/shraddhac0206/ETLpipeline-monitoring-dashboard",
       live: null,
       achievement: null,
-      category: "data"
+      category: "automation"
     },
     {
       title: "AI-Powered Aviation Chatbot",
@@ -307,7 +307,7 @@ function App() {
       technologies: ["SQL", "Window Functions", "Data Cleaning"],
       github: "https://github.com/shraddhac0206/Layoffs-Data-Analysis-SQL",
       live: null,
-      category: "data"
+      category: "requirements"
     },
     {
       title: "Customer Churn Prediction",
@@ -315,7 +315,7 @@ function App() {
       technologies: ["Random Forest", "Extra Trees", "Scikit-learn", "Python"],
       github: "https://github.com/shraddhac0206/churn-modeling-bagging",
       live: null,
-      category: "ml"
+      category: "ai"
     },
     {
       title: "Airbnb NYC Dashboard",
@@ -339,7 +339,7 @@ function App() {
       technologies: ["Requirements Engineering", "GAP Analysis", "SAP S/4HANA"],
       github: "https://github.com/shraddhac0206/SAP-S4HANA-Requirements-Document",
       live: null,
-      category: "data"
+      category: "enterprise"
     },
     {
       title: "A/B Testing Analysis – Landing Page Conversion Experiment",
@@ -347,7 +347,7 @@ function App() {
       technologies: ["Python", "Pandas", "Seaborn", "SciPy", "Statsmodels"],
       github: "https://github.com/shraddhac0206/A-B-Testing-Analysis",
       live: null,
-      category: "ml"
+      category: "requirements"
     },
     {
       title: "Heart Disease Power BI Dashboard",
@@ -363,7 +363,7 @@ function App() {
       technologies: ["Excel", "Python", "Pandas", "Matplotlib", "Seaborn", "Data Cleaning", "EDA"],
       github: "https://github.com/shraddhac0206/bike-sharing-analytics-excel-python", // update if needed
       live: null,
-      category: "data"
+      category: "requirements"
     },
     {
       title: "Autocorrect AI Tool",
@@ -380,15 +380,24 @@ function App() {
       github: "https://github.com/shraddhac0206/resume-parser-ai",
       live: null,
       category: "ai"
+    },
+    {
+      title: "What-If Business Decision Simulator — Financial Scenario Modeling Tool",
+      description: "Designed a financial forecasting and variance analysis model to evaluate revenue, cost, and profit impact across multiple business scenarios, supporting strategic planning decisions. Automated KPI recalculations and scenario comparisons, reducing manual forecasting effort by 35% and improving accuracy and clarity in executive decision-making discussions.",
+      technologies: ["Python", "Excel", "Business Analytics", "Financial Modeling", "Scenario Analysis", "KPI Tracking"],
+      github: "https://github.com/shraddhac0206/What-if-Business-Simulator",
+      live: null,
+      category: "ai"
     }    
   ];
 
   const filters = [
     { id: 'all', label: 'All Projects' },
-    { id: 'ai', label: 'AI & ML' },
-    { id: 'data', label: 'Data Analysis' },
-    { id: 'viz', label: 'Visualization' },
-    { id: 'ml', label: 'Machine Learning' }
+    { id: 'requirements', label: 'Requirements & Analysis ' },
+    { id: 'viz', label: 'Dashboard & Reporting' },
+    { id: 'automation', label: 'Process Automation' },
+    { id: 'ai', label: 'AI & Decision Support ' },
+    { id: 'enterprise', label: 'Enterprise Systems' }
   ];
 
   const filteredProjects = activeFilter === 'all' 
@@ -397,65 +406,69 @@ function App() {
 
   const skillGroups = [
     {
-      category: "Languages & Programming",
-      skills: ["Python", "SQL", "R", "Pyspark", "C++ (basic)"]
+      category: "BA Methodologies & Tools",
+      skills: ["Requirements Elicitation", "GAP Analysis", "AS-IS/TO-BE Process Modeling", "User Stories", "Use Cases", "JIRA", "SharePoint", "Microsoft Power Platform (Power Apps, Power Automate, Power Virtual Agents)", "Agile/Scrum", "Python (Data Analysis)", "Microsoft Visio", "Microsoft PowerPoint & Word"]
     },
     {
-      category: "Tech/OS",
-      skills: ["MATLAB", "Jupyter Notebook", "AWS", "Microsoft PowerBI", "VSCode", "Github", "Windows", "JIRA", "Azure", "Google Cloud Platform", "Tableau", "Advanced Excel", "Rstudio", "Databricks"]
+      category: "Enterprise Systems",
+      skills: ["SAP S/4HANA", "Fiori", "Requirements Gathering", "Business Process Mapping", "CRM/Salesforce Knowledge"]
     },
     {
-      category: "Libraries & Frameworks",
-      skills: ["Scikit-Learn", "Pandas", "NumPy", "Matplotlib", "Seaborn", "NLTK", "Tidyverse", "Scipy"]
+      category: "Data Validation & Reporting",
+      skills: ["SQL (Joins, Aggregations, CTEs, Window Functions)", "Tableau", "Power BI (Advanced DAX, Data Modeling, Star Schema Design, Dashboard Development)", "Advanced Excel (PivotTables, Lookups, Modeling, Scenario Analysis, VBA, Macros)", "Alteryx"]
     },
     {
-      category: "Machine Learning",
-      skills: ["Classification", "Regression", "Clustering", "Neural Networks", "Deep Learning", "Feature Engineering", "Fraud/Anomaly Detection", "Model Evaluation Metrics"]
+      category: "Process Improvement",
+      skills: ["Root Cause Analysis (5 Whys)", "Stakeholder Management", "Change Management", "UAT (User Acceptance Testing)"]
     },
     {
-      category: "Technical Competencies",
-      skills: ["Business Requirements Gathering", "Predictive Modeling", "Regression Analysis", "Data Risk Management", "A/B Testing", "Data Mining", "ETL Automation", "CRM Analytics", "Statistical Testing", "LLM Exposure", "Data Wrangling", "Data Cleaning", "Documentation", "Technical Consultancy", "Process Assessment", "Client Collaboration", "Data Governance", "Metadata Management", "ETL Development", "Data Modeling (Star/Snowflake Schema)", "Data Warehousing", "Apache Spark", "Hadoop", "Alteryx", "Root Cause Analysis (5 Whys)", "Impact Assessment", "Stakeholder Management", "Change Management", "UAT (User Acceptance Testing)", "Functional & Non-Functional Specifications", "Data Flow Diagrams", "Process Documentation"]
+      category: "Documentation & Modeling",
+      skills: ["Functional & Non-Functional Specifications", "Data Flow Diagrams", "Process Documentation", "Data Modeling"]
     },
     {
-      category: "Business Analysis & Tools",
-      skills: ["Requirements Elicitation", "GAP Analysis", "AS-IS/TO-BE Process Modeling", "User Stories", "Use Cases", "JIRA", "SharePoint", "Confluence", "Agile/Scrum", "SAP S/4HANA", "BRF+", "Fiori", "Requirements Gathering", "Business Process Mapping", "CRM/Salesforce Knowledge", "Advanced SQL (Window Functions, Stored Procedures, BigQuery)", "R (Tidyverse)", "Power BI (DAX, Power Query)", "Advanced Excel (VBA)", "Microsoft SharePoint", "KPI Dashboarding", "Data Storytelling", "Cloud (AWS)"]
+      category: "Core Competencies",
+      skills: ["Decision Analysis & Forecasting", "KPI Tracking & Reporting", "Data-Driven Problem Solving", "Process Optimization", "Stakeholder Collaboration", "Performance Measurement"]
     }
   ];
 
   const workExperience = [
     {
-      title: "Business Analysis Graduate Teaching Assistant",
+      title: "Graduate Teaching Assistant",
       company: "The University of Texas at Arlington",
-      duration: "January 2025 – Present",
+      duration: "January 2025 – December 2025",
       achievements: [
-        "Orchestrated SQL querying, database design, and data warehousing labs and assignments for 160+ students, achieving 95% positive feedback on clarity and relevance to industry applications.",
-        "Delivered training on data visualization, forecasting, and statistical analysis (Power BI, Tableau, Excel, Python) to 300+ graduate students, simulating client-facing presentations and reinforcing data integrity.",
-        "Collaborated on 3 faculty-led research projects, implementing machine learning, automation techniques, and documenting architecture-related code logic."
+        "Designed and reviewed project assignments involving data modeling, KPI tracking, Power BI dashboards and Excel-based scenario analysis, improving student solution quality and clarity.",
+        "Assisted in developing and grading test cases and validation scripts, ensuring accuracy of SQL queries and reporting outputs.",
+        "Created clear process documentation, walkthrough guides and training materials, helping both technical and non-technical students understand business and system workflows."
       ],
-      skills: ["Python", "Excel", "Tableau", "Jupyter Notebook", "Scikit-learn", "Pandas", "Matplotlib", "Time Series Forecasting (ARIMA, Exponential Smoothing)", "Classification Algorithms (Decision Trees, Logistic Regression)" ]
+      skills: ["Data Modeling", "Power BI", "Excel", "SQL", "Documentation", "UAT", "Stakeholder Communication", "KPI Tracking"]
     },
     {
-      title: "Jr. Data Analyst",
+      title: "Data Business Analyst",
       company: "Capgemini",
-      duration: "February 2023 - October 2023",
+      duration: "January 2023 – November 2023",
       achievements: [
-        "Analyzed millions of financial transaction records, including vendor payments and corporate card expenses, identifying anomalies and preventing $8k-10k in potential incorrect payments.",
-        "Engineered and optimized complex ETL pipelines and KPI dashboards (Power BI/Tableau), reducing weekly reporting time by 30% and saving operations teams over 12 hours per week.",
-        "Collaborated with Finance Ops and IT teams to manage weekly KPI dashboards, ensuring data integrity through SQL checks and driving 15% improvement in data accuracy.",
-        "Developed and maintained documentation for data dictionaries and ETL processes, creating 10+ documents and ensuring compliance with data governance policies."
+        "Analyzed large operational datasets to identify productivity trends, cost leakage, and process inefficiencies, enabling data-driven performance improvement initiatives.",
+        "Collaborated with Sales, Finance and Operations stakeholders to gather reporting requirements, translate business needs into structured dashboards, and document functional logic and data definitions.",
+        "Designed and developed end-to-end Power BI dashboards including data modeling, relationship design, and advanced DAX measures to support operational KPI tracking and monthly performance reviews.",
+        "Supported UAT and release validation by writing and executing 40+ test cases, validating reporting logic, reconciling outputs against source systems, and securing stakeholder sign-off.",
+        "Wrote complex SQL queries involving joins, aggregations, CTEs, and window functions to clean, transform, and validate large operational datasets.",
+        "Independently managed reporting enhancement projects from requirement gathering to dashboard deployment, including stakeholder walkthroughs.",
+        "Identified reporting discrepancies through root cause analysis (5 Whys) and worked with technical teams to resolve data and logic defects within SLA timelines."
       ],
-      skills: ["SQL (MySQL, PostgreSQL, MS SQL Server)","Alteryx", "Excel (Pivot Tables, VLOOKUP, Advanced Functions)", "Power BI", "Power Query", "Data Modeling (Star Schema, Snowflake Schema)", "DAX", "JIRA", "Confluence", "Git", "GitHub", "Python"]
+      skills: ["SQL (Joins, Aggregations, CTEs, Window Functions)", "Power BI", "Power Query", "DAX", "Data Modeling", "Excel", "Alteryx", "JIRA", "Confluence", "Root Cause Analysis", "UAT", "Stakeholder Management"]
     },
     {
-      title: "Data Analyst Intern",
+      title: "Business Analyst Intern",
       company: "Abhyaz",
-      duration: "January 2022 - December 2022",
+      duration: "January 2022 – December 2022",
       achievements: [
-        "Designed multi-dimensional reporting dashboards (Power BI), integrated with MySQL data sources, for inventory demand tracking, improving planning accuracy by 20%.",
-        "Championed data quality practices across finance department, using 5 newly defined business rules for data governance, leading to a demonstrable improvement in the accuracy of financial reporting.",
-        "Engineered data pipelines via VBA for finance and operations departments, slashing the time spent on manual sales data entry by 3 hours per week, per department."
+        "Assisted in requirements gathering, stakeholder interviews, and business process mapping, translating reporting needs into structured data models and analytics workflows.",
+        "Developed and validated Power BI dashboards and reporting requirements, aligning campaign and inventory analytics with defined business KPIs.",
+        "Presented dashboard insights to site leadership, translating complex operational metrics into actionable cost reduction and performance improvement recommendations.",
+        "Performed data validation and reconciliation using SQL, Python, and Excel, identifying inconsistencies in source-to-target mappings and preventing downstream reporting errors."
       ],
-      skills: ["Power BI", "Excel VBA", "SQL", "MySQL", "Predictive Modeling (Linear Regression, Decision Trees)", "Python", "ETL Pipelines", "Data Cleaning (Pandas, Excel)", "Data Visualization Best Practices"]
+      skills: ["Power BI", "SQL", "Python", "Excel", "Data Validation", "Process Mapping", "Requirements Gathering", "Dashboard Development"]
     }
   ];
 
@@ -483,6 +496,10 @@ function App() {
   ];
 
   const certifications = [
+    {
+      name: "Microsoft Business Analyst Professional",
+      skills: "Requirements Gathering, Process Mapping, Data Analysis, Solution Design, Stakeholder Management, Business Process Improvement"
+    },
     {
       name: "Google Data Analytics Certificate",
       skills: "Data Analysis, Spreadsheets, SQL, R, Tableau, Data Cleaning, Data Visualization"
@@ -725,7 +742,7 @@ function App() {
                 transition={{ duration: 0.8, delay: 0.4 }}
                 className="hero-tagline"
               >
-                Data doesn't have to be boring! I turn spreadsheets, dashboards, and messy data into insights people actually understand—and use.             </motion.p>
+                Helping businesses make better decisions using data, analytics, and clear insights.             </motion.p>
               
               <motion.div
                 initial={{ opacity: 0, y: 30 }}
@@ -773,7 +790,7 @@ function App() {
               transition={{ duration: 0.8, delay: 0.8 }}
               className="hero-quick-links"
             >
-              <motion.a
+              {/* <motion.a
                 href="https://www.linkedin.com/in/shraddha-chauhan-2626sc/"
                 rel="noopener noreferrer"
                 className="quick-link"
@@ -782,7 +799,7 @@ function App() {
                 whileTap={{ scale: 0.9 }}
               >
                 <Linkedin className="w-6 h-6" />
-              </motion.a>
+              </motion.a> */}
               <motion.a
                 href="https://github.com/shraddhac0206"
                 target="_blank"
@@ -821,7 +838,7 @@ function App() {
             <h2 className="section-title">About Me</h2>
             <div className="max-w-4xl mx-auto">
               <p className="section-subtitle text-lg leading-relaxed">
-              I work as a data analyst and business analyst, focusing on turning data into insights that businesses can actually use. I enjoy digging into datasets, finding patterns, and presenting results in a clear way that supports smarter strategies and real business impact.
+              I am a Business Analyst with a strong analytics background, specializing in translating complex business requirements into data-driven solutions. I work closely with stakeholders across different departments to understand their needs, document processes, and deliver dashboards and reports that drive strategic decision-making. My expertise lies in bridging the gap between business objectives and technical implementation, ensuring solutions are both impactful and user-focused.
               </p>
             </div>
           </motion.div>
@@ -859,17 +876,17 @@ function App() {
                       <div className="coursework">
                         <p className="text-sm font-semibold text-gray-700 mb-2">Key Coursework:</p>
                         <div className="course-tags">
-                          <span className="course-tag">Database Management Systems</span>
-                          <span className="course-tag">Big Data (Hadoop & Spark)</span>
-                          <span className="course-tag">Analytics & Decision Analysis</span>
-                          <span className="course-tag">Applied Statistics & Visualization for Analytics</span>
-                          <span className="course-tag">Data Warehousing and Data Mining</span>
-                          <span className="course-tag">HR Metrics and Analytics</span>
-                          <span className="course-tag">Business and Economic Forecasting</span>
-                          <span className="course-tag">Data Science</span>
-                          <span className="course-tag">Cloud Computing (AWS)</span>
-                          <span className="course-tag">Advanced Web Development</span>
-                          <span className="course-tag">MIS/Data Processing</span>
+                          <span className="course-tag">Business Requirements Elicitation</span>
+                          <span className="course-tag">Process Mapping & GAP Analysis</span>
+                          <span className="course-tag">Data Modeling & Database Design</span>
+                          <span className="course-tag">Business Intelligence & Analytics</span>
+                          <span className="course-tag">Advanced SQL & Data Transformation</span>
+                          <span className="course-tag">Dashboard Development (Power BI/Tableau)</span>
+                          <span className="course-tag">SAP S/4HANA & Enterprise Systems</span>
+                          <span className="course-tag">User Acceptance Testing (UAT)</span>
+                          <span className="course-tag">Stakeholder Management & Communication</span>
+                          <span className="course-tag">Change Management & Agile Methodologies</span>
+                          <span className="course-tag">Business Process Improvement</span>
                         </div>
                       </div>
                     </div>
@@ -925,7 +942,7 @@ function App() {
                 
                 <div className="expertise-content">
                   <p className="text-gray-600 mb-6 leading-relaxed">
-                  I make data useful. As a data and business analyst, I help organizations move from raw numbers to clear insights that guide decisions. My work ranges from data wrangling and modeling to creating dashboards that people actually enjoy using.
+                  I bridge the gap between business stakeholders and technical teams by translating complex business requirements into actionable solutions. I work with Sales, Finance, and Operations leaders to understand their challenges, document processes, and design data-driven strategies that drive measurable business outcomes.
                   </p>
                   
                   <p className="text-gray-600 mb-6 leading-relaxed">
@@ -946,7 +963,7 @@ function App() {
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
                           </svg>
                         </div>
-                        <span>Data Analysis & Visualization</span>
+                        <span>Requirements Gathering & Process Mapping</span>
                       </div>
                       <div className="highlight-item">
                         <div className="highlight-icon">
@@ -954,7 +971,7 @@ function App() {
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
                           </svg>
                         </div>
-                        <span>Predictive Modeling</span>
+                        <span>Dashboard & Reporting Design</span>
                       </div>
                       <div className="highlight-item">
                         <div className="highlight-icon">
@@ -962,7 +979,7 @@ function App() {
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z" />
                           </svg>
                         </div>
-                        <span>Business Intelligence</span>
+                        <span>Stakeholder Management & UAT</span>
                       </div>
                     </div>
                   </div>
@@ -1060,7 +1077,7 @@ function App() {
           >
             <h2 className="section-title">Projects</h2>
             <p className="section-subtitle">
-              A Showcase of my Data Science and Analytics Projects
+              A Showcase of my Data and Business Analytics Projects
             </p>
           </motion.div>
 
@@ -1137,33 +1154,33 @@ function App() {
             <h3 className="text-2xl font-bold text-center mb-8">Core Competencies</h3>
             <div className="grid grid-2 gap-6">
               <SkillProgress 
-                skill="Data Analysis" 
+                skill="Requirements Analysis & Gathering" 
                 percentage={95} 
                 icon={<BarChart3 className="w-5 h-5" />} 
               />
               <SkillProgress 
-                skill="Machine Learning" 
-                percentage={90} 
+                skill="Stakeholder Management & Communication" 
+                percentage={93} 
                 icon={<Brain className="w-5 h-5" />} 
               />
               <SkillProgress 
-                skill="Data Visualization" 
+                skill="Process Mapping & Documentation" 
                 percentage={92} 
                 icon={<PieChart className="w-5 h-5" />} 
               />
               <SkillProgress 
-                skill="SQL & Databases" 
-                percentage={88} 
+                skill="Dashboard & Report Design" 
+                percentage={91} 
                 icon={<Database className="w-5 h-5" />} 
               />
               <SkillProgress 
-                skill="Python Programming" 
-                percentage={94} 
+                skill="Data Validation & Quality" 
+                percentage={90} 
                 icon={<Code className="w-5 h-5" />} 
               />
               <SkillProgress 
-                skill="Business Intelligence" 
-                percentage={87} 
+                skill="Business Process Improvement & Optimization" 
+                percentage={89} 
                 icon={<TrendingUp className="w-5 h-5" />} 
               />
             </div>
@@ -1576,21 +1593,7 @@ function App() {
                   </div>
             </motion.div>
 
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.3 }}
-              viewport={{ once: true }}
-              className="contact-item"
-            >
-              <Linkedin className="w-5 h-5 md:w-6 md:h-6 text-blue-600 flex-shrink-0 mt-1" />
-              <div className="contact-content">
-                <h3 className="font-semibold text-sm md:text-base">LinkedIn</h3>
-                <a href="https://www.linkedin.com/in/shraddha-chauhan-2626sc/" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline text-sm md:text-base contact-link">
-                  Linkedin
-                    </a>
-                  </div>
-            </motion.div>
+            
 
             <motion.div
               initial={{ opacity: 0, y: 30 }}
@@ -1608,21 +1611,7 @@ function App() {
                   </div>
             </motion.div>
 
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.5 }}
-              viewport={{ once: true }}
-              className="contact-item"
-            >
-              <div className="w-5 h-5 md:w-6 md:h-6 text-blue-600 flex-shrink-0 mt-1 flex items-center justify-center">
-                📍
-              </div>
-              <div className="contact-content">
-                <h3 className="font-semibold text-sm md:text-base">Location</h3>
-                <p className="text-gray-600 text-sm md:text-base">Dallas, Texas, United States</p>
-            </div>
-          </motion.div>
+            
           </div>
         </div>
       </section>
